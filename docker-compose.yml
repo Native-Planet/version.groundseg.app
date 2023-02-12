@@ -1,0 +1,13 @@
+---
+version: "3.8"
+services:
+  version:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: version
+    environment:
+      - var
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
