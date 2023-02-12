@@ -9,5 +9,5 @@ services:
     environment:
       - var
     volumes:
-      - ./data:/data
+      - ./version_db:/data
     restart: unless-stopped
