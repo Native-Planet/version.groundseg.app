@@ -17,8 +17,8 @@ Stores data in sqlite db.
                 "patch": 8,
                 "amd64_url": "https://bin.infra.native.computer/groundseg_amd64_latest",
                 "arm64_url": "https://bin.infra.native.computer/groundseg_arm64_latest",
-                "amd64_sha256": "24c09a8b94207c5530657960f67d151d311f00d934f21d4748bd3c6256699fb9",
-                "arm64_sha256": "2a2ee6a79b165d5266da711dda50cbda88ff0c9745917d48bb2ce0662ad2f43c"
+                "amd64_sha256": "c170b2b5111ea7b88db798b0740fa8d3e3eeaa02f6b42c4fdda73a52cae7b969",
+                "arm64_sha256": "769200017da12766728cab8f17bc11bbc4cd5a9540cc919b364649aa74cc2cdd"
             },
             "webui": {
                 "repo": "registry.hub.docker.com/nativeplanet/groundseg-webui",
@@ -35,6 +35,11 @@ Stores data in sqlite db.
                 "tag": "latest",
                 "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
             },
+            "miniomc": {
+                "repo": "registry.hub.docker.com/minio/mc",
+                "tag": "latest",
+                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
+            },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",
                 "tag": "latest",
@@ -48,8 +53,8 @@ Stores data in sqlite db.
                 "patch": 8,
                 "amd64_url": "https://bin.infra.native.computer/groundseg_amd64_edge",
                 "arm64_url": "https://bin.infra.native.computer/groundseg_arm64_edge",
-                "amd64_sha256": "24c09a8b94207c5530657960f67d151d311f00d934f21d4748bd3c6256699fb9",
-                "arm64_sha256": "2a2ee6a79b165d5266da711dda50cbda88ff0c9745917d48bb2ce0662ad2f43c"
+                "amd64_sha256": "c170b2b5111ea7b88db798b0740fa8d3e3eeaa02f6b42c4fdda73a52cae7b969",
+                "arm64_sha256": "769200017da12766728cab8f17bc11bbc4cd5a9540cc919b364649aa74cc2cdd"
             },
             "webui": {
                 "repo": "registry.hub.docker.com/nativeplanet/groundseg-webui",
@@ -65,6 +70,11 @@ Stores data in sqlite db.
                 "repo": "registry.hub.docker.com/minio/minio",
                 "tag": "latest",
                 "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
+            },
+            "miniomc": {
+                "repo": "registry.hub.docker.com/minio/mc",
+                "tag": "latest",
+                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
             },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",

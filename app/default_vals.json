@@ -22,9 +22,14 @@
                 "sha256": "e3d1624382ebb35355c9560558cdfa170ff1950bb8651ab5536454b54050b451"
             },
             "minio": {
-                "repo": "registry.hub.docker.com/minio/minio",
+                "repo": "registry.hub.docker.com/minio/mc",
                 "tag": "latest",
                 "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
+            },
+            "miniomc": {
+                "repo": "registry.hub.docker.com/minio/mc",
+                "tag": "latest",
+                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
             },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",
@@ -56,6 +61,11 @@
                 "repo": "registry.hub.docker.com/minio/minio",
                 "tag": "latest",
                 "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
+            },
+            "miniomc": {
+                "repo": "registry.hub.docker.com/minio/mc",
+                "tag": "latest",
+                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
             },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",

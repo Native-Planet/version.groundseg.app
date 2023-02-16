@@ -23,6 +23,9 @@ for db in dbs:
     conn.execute('CREATE TABLE IF NOT EXISTS minio (uid INTEGER, \
                 repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
+    conn.execute('CREATE TABLE IF NOT EXISTS miniomc (uid INTEGER, \
+                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
+                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS wireguard (uid INTEGER, \
                 repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
@@ -104,6 +107,11 @@ def generate_content():
                     'tag': get_value('latest','minio','tag'),
                     'sha256': get_value('latest','minio','sha256')
                 },
+                'miniomc': {
+                    'repo': get_value('latest','miniomc','repo'),
+                    'tag': get_value('latest','miniomc','tag'),
+                    'sha256': get_value('latest','miniomc','sha256')
+                },
                 'wireguard': {
                     'repo': get_value('latest','wireguard','repo'),
                     'tag': get_value('latest','wireguard','tag'),
@@ -135,6 +143,11 @@ def generate_content():
                     'tag': get_value('edge','minio','tag'),
                     'sha256': get_value('edge','minio','sha256')
                 },
+                'miniomc': {
+                    'repo': get_value('latest','miniomc','repo'),
+                    'tag': get_value('latest','miniomc','tag'),
+                    'sha256': get_value('latest','miniomc','sha256')
+                },
                 'wireguard': {
                     'repo': get_value('edge','wireguard','repo'),
                     'tag': get_value('edge','wireguard','tag'),
@@ -159,7 +172,7 @@ def default_vals():
     generate_content()
 
 # Create rows if empty db
-nullcheck = get_value('edge','groundseg','uid')
+nullcheck = get_value('edge','miniomc','uid')
 if nullcheck == None:
     f = open('/app/default_vals.json')
     d = json.load(f)
