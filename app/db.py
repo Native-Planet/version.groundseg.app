@@ -11,16 +11,20 @@ for db in dbs:
     conn.execute('pragma auto_vacuum = FULL;')
     conn.execute('CREATE TABLE IF NOT EXISTS groundseg (uid INTEGER, \
                 major TEXT NULL, minor TEXT NULL, patch TEXT NULL, \
-                amd64_url TEXT NULL, arm64_url TEXT NULL, checksum TEXT NULL, \
+                amd64_url TEXT NULL, arm64_url TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
+    conn.execute('CREATE TABLE IF NOT EXISTS webui (uid INTEGER, \
+                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS vere (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, checksum TEXT NULL \
+                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS minio (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, checksum TEXT NULL \
+                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS wireguard (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, checksum TEXT NULL \
+                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
                 last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.commit()
     conn.close()
@@ -55,15 +59,22 @@ def upd_value(db,table,key,value):
     timestamp = datetime.now()
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
     conn.execute('pragma journal_mode=wal;')
-    query = f'UPDATE {db} SET \
+    query = f'UPDATE {table} SET \
         {key} = ?, \
-        last_mod = "{timestamp}" \
-        WHERE uid is 1;'
-    logging.info(query)
+        last_mod = "{timestamp}";'
+    logging.info(f'UPDATE {db}/{table}: {key}={value}')
     cur = conn.cursor()
     cur.execute(f'''{query}''',(str(value),))
     conn.commit()
-    generate_content()
+
+def insert_row(db,table):
+    timestamp = datetime.now()
+    conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
+    query = f'INSERT INTO {table} (uid) VALUES(1);'
+    logging.info(f'Inserting {db}:{table}')
+    cur = conn.cursor()
+    cur.execute(query)
+    conn.commit
 
 def generate_content():
     content = {
@@ -75,51 +86,92 @@ def generate_content():
                     'patch': int(get_value('latest','groundseg','patch')),
                     'amd64_url': get_value('latest','groundseg','amd64_url'),
                     'arm64_url': get_value('latest','groundseg','arm64_url'),
-                    'checksum': get_value('latest','groundseg','checksum')
+                    'amd64_sha256': get_value('latest','groundseg','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','groundseg','arm64_sha256')
+                },
+                'webui': {
+                    'repo': get_value('latest','webui','repo'),
+                    'tag': get_value('latest','webui','tag'),
+                    'sha256': get_value('latest','webui','sha256')
                 },
                 'vere': {
                     'repo': get_value('latest','vere','repo'),
                     'tag': get_value('latest','vere','tag'),
-                    'checksum': get_value('latest','vere','checksum')
+                    'sha256': get_value('latest','vere','sha256')
                 },
                 'minio': {
                     'repo': get_value('latest','minio','repo'),
                     'tag': get_value('latest','minio','tag'),
-                    'checksum': get_value('latest','minio','checksum')
+                    'sha256': get_value('latest','minio','sha256')
                 },
                 'wireguard': {
                     'repo': get_value('latest','wireguard','repo'),
                     'tag': get_value('latest','wireguard','tag'),
-                    'checksum': get_value('latest','wireguard','checksum')
+                    'sha256': get_value('latest','wireguard','sha256')
                 }
             },
             'edge': {
                 'groundseg': {
-                    'major': get_value('edge','groundseg','major'),
-                    'minor': get_value('edge','groundseg','minor'),
-                    'patch': get_value('edge','groundseg','patch'),
+                    'major': int(get_value('edge','groundseg','major')),
+                    'minor': int(get_value('edge','groundseg','minor')),
+                    'patch': int(get_value('edge','groundseg','patch')),
                     'amd64_url': get_value('edge','groundseg','amd64_url'),
                     'arm64_url': get_value('edge','groundseg','arm64_url'),
-                    'checksum': get_value('edge','groundseg','checksum')
+                    'amd64_sha256': get_value('latest','groundseg','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','groundseg','arm64_sha256')
+                },
+                'webui': {
+                    'repo': get_value('latest','webui','repo'),
+                    'tag': get_value('latest','webui','tag'),
+                    'sha256': get_value('latest','webui','sha256')
                 },
                 'vere': {
                     'repo': get_value('edge','vere','repo'),
                     'tag': get_value('edge','vere','tag'),
-                    'checksum': get_value('edge','vere','checksum')
+                    'sha256': get_value('edge','vere','sha256')
                 },
                 'minio': {
                     'repo': get_value('edge','minio','repo'),
                     'tag': get_value('edge','minio','tag'),
-                    'checksum': get_value('edge','minio','checksum')
+                    'sha256': get_value('edge','minio','sha256')
                 },
                 'wireguard': {
                     'repo': get_value('edge','wireguard','repo'),
                     'tag': get_value('edge','wireguard','tag'),
-                    'checksum': get_value('edge','wireguard','checksum')
+                    'sha256': get_value('edge','wireguard','sha256')
                 }
             }
         }
     }
-    content = json.loads(content)
+    content = json.dumps(content)
     upd_value('content','content','content',content)
     return content
+
+def default_vals():
+    f = open('/app/default_vals.json')
+    d = json.load(f)['groundseg']
+    channels = ['latest', 'edge']
+    for channel in channels:
+        for obj in d[channel]: # gs, vere, minio
+            for item in d[channel][obj]: # repo, tag, sha256
+                val = d[channel][obj][item]
+                upd_value(f'{channel}',f'{obj}',f'{item}',f'{val}')
+    generate_content()
+
+# Create rows if empty db
+nullcheck = get_value('edge','groundseg','uid')
+if nullcheck == None:
+    f = open('/app/default_vals.json')
+    d = json.load(f)
+    channels = ['latest', 'edge']
+    for channel in channels:
+        for table in d['groundseg'][channel]:
+            logging.info(f'Creating {channel} {table} table')
+            nullcheck = get_value(channel,table,'uid')
+            if nullcheck == None:
+                insert_row('edge',table)
+                insert_row('latest',table)
+    nullcheck = get_value('content','content','uid')
+    if nullcheck == None:
+        insert_row('content','content')
+    default_vals()

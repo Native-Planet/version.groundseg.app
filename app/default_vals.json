@@ -1,12 +1,3 @@
-#### Native Planet software version server
-
-Serves a JSON blob with current version information for all software.
-
-Gets updated by authenticated webhook called by Jenkins build jobs.
-
-Stores data in sqlite db.
-
-```json
 {
 "groundseg":
     {
@@ -74,4 +65,3 @@ Stores data in sqlite db.
         }
     }
 }
-```

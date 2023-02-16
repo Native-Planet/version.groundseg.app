@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
-import logging, os, calendar, time
+import logging, os, calendar, time, json
 from gevent.pywsgi import WSGIServer
 import db
 
 logging.basicConfig(filename="/data/srv.log", level=os.environ.get("LOGLEVEL", "INFO"), format='%(asctime)s %(levelname)s:%(message)s')
-logging.info('\n##\version.groundseg.app running\n##\n')
+logging.info('\n##\n\tversion.groundseg.app running\n##\n')
 
 authkey = os.getenv('AUTHKEY')
 
@@ -14,12 +14,13 @@ app = Flask(__name__)
 def get_conf():
     content = db.get_value('content','content','content')
     content = json.loads(content)
-    return values
+    return content
 
-@app.route("/modify/groundseg/<str:version>/<str:software>/<str:key>/<str:val>", methods=["PUT"])
-def upd_conf(version,software,key,val):
+@app.route("/modify/groundseg/<version>/<software>/<key>/<value>", methods=["PUT"])
+def upd_conf(version,software,key,value):
     logging.info(f'Updating {version} {software}: {key}={value}')
     db.upd_value(version,software,key,value)
+    db.generate_content()
     return 'ok'
 
 @app.before_request

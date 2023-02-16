@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: version
     environment:
-      - var
+      - AUTHKEY
     volumes:
       - ./version_db:/data
     restart: unless-stopped
