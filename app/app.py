@@ -10,27 +10,34 @@ authkey = os.getenv('AUTHKEY')
 
 app = Flask(__name__)
 
+# return cached version object
 @app.route("/", methods=["GET"])
 def get_conf():
     content = db.get_value('content','content','content')
     content = json.loads(content)
     return content
 
+# route for modifying values in the version object
 @app.route("/modify/groundseg/<version>/<software>/<key>/<value>", methods=["PUT"])
 def upd_conf(version,software,key,value):
+    if value == 'payload':
+        # if we want to submit a string that wont work with url
+        content = request.get_json()
+        value = content.get('value')
     logging.info(f'Updating {version} {software}: {key}={value}')
     db.upd_value(version,software,key,value)
     db.generate_content()
     return 'ok'
 
+# check for header auth
 @app.before_request
 def before_request():
     if request.path.startswith('/modify'):
         headers = request.headers
         auth = headers.get("X-Api-Key")
         fwd_ip = headers.get("X-Forwarded-For")
-        logging.warning(f'Failed auth request from {fwd_ip}')
         if auth != authkey:
+            logging.warning(f'Failed auth request from {fwd_ip}')
             return jsonify({"error": "Failed auth"}), 403
 
 if __name__ == "__main__":

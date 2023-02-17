@@ -4,6 +4,7 @@ from pathlib import Path
 
 logging.basicConfig(filename="/data/srv.log", level=os.environ.get("LOGLEVEL", "INFO"), format='%(asctime)s %(levelname)s:%(message)s')
 
+# create DB if it doesnt exist
 dbs = ['latest','edge']
 for db in dbs:
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
@@ -45,6 +46,7 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+# look up value in db
 def get_value(db,table,lookup):
     query = f'SELECT {lookup} FROM {table} WHERE uid is 1;'
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
@@ -58,6 +60,7 @@ def get_value(db,table,lookup):
         result = answer_json[0][lookup]
         return result
 
+# update value in db
 def upd_value(db,table,key,value):
     timestamp = datetime.now()
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
@@ -70,6 +73,7 @@ def upd_value(db,table,key,value):
     cur.execute(f'''{query}''',(str(value),))
     conn.commit()
 
+# insert blank row in table
 def insert_row(db,table):
     timestamp = datetime.now()
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
@@ -79,6 +83,7 @@ def insert_row(db,table):
     cur.execute(query)
     conn.commit
 
+# generate version object and cache in db
 def generate_content():
     content = {
         'groundseg': {
@@ -160,6 +165,7 @@ def generate_content():
     upd_value('content','content','content',content)
     return content
 
+# populate db with values in default_vals.json
 def default_vals():
     f = open('/app/default_vals.json')
     d = json.load(f)['groundseg']
