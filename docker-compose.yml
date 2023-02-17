@@ -6,6 +6,8 @@ services:
       context: ./app
       dockerfile: Dockerfile
     container_name: version
+    ports:
+      - 8099:8090
     environment:
       - AUTHKEY
     volumes:
