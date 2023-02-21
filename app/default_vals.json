@@ -8,33 +8,38 @@
                 "patch": 8,
                 "amd64_url": "https://bin.infra.native.computer/groundseg_amd64_latest",
                 "arm64_url": "https://bin.infra.native.computer/groundseg_arm64_latest",
-                "amd64_sha256": "24c09a8b94207c5530657960f67d151d311f00d934f21d4748bd3c6256699fb9",
-                "arm64_sha256": "2a2ee6a79b165d5266da711dda50cbda88ff0c9745917d48bb2ce0662ad2f43c"
+                "amd64_sha256": "c170b2b5111ea7b88db798b0740fa8d3e3eeaa02f6b42c4fdda73a52cae7b969",
+                "arm64_sha256": "769200017da12766728cab8f17bc11bbc4cd5a9540cc919b364649aa74cc2cdd"
             },
             "webui": {
                 "repo": "registry.hub.docker.com/nativeplanet/groundseg-webui",
                 "tag": "latest",
-                "sha256": "5c6f205787342525daaa3b60407c534a1260824644ebb167c6e4d90247d5b6f7"
+                "arm64_sha256": "fdf3592698b60956e8a78ca7f8c70346268be955a5522b39a4c36eb20aa37f91",
+                "amd64_sha256": "226335a6c3b41046cd4122a1c8cddd66b75ea76efca39de7b04be684ea2354ec"
             },
             "vere": {
                 "repo": "registry.hub.docker.com/nativeplanet/urbit",
                 "tag": "v1.20",
-                "sha256": "e3d1624382ebb35355c9560558cdfa170ff1950bb8651ab5536454b54050b451"
+                "arm64_sha256": "fb7dddb7fea249b4c46931f0709ad1a5b7225ee69feb9fb8fac17cc0b8eeddd5",
+                "amd64_sha256": "e3d1624382ebb35355c9560558cdfa170ff1950bb8651ab5536454b54050b451"
             },
             "minio": {
-                "repo": "registry.hub.docker.com/minio/mc",
+                "repo": "registry.hub.docker.com/minio/minio",
                 "tag": "latest",
-                "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
+                "arm64_sha256": "408eb463b859e4c0c5814c8ccfc05580948ea836fb42c554b3785877eb71b93c",
+                "amd64_sha256": "fd5bf0c4c61a07e832f65dbf65a297e219791b75aba9abeb3a792c323db12941"
             },
             "miniomc": {
                 "repo": "registry.hub.docker.com/minio/mc",
                 "tag": "latest",
-                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
+                "arm64_sha256": "f5f56720e42144567838dff05348c7f9ec581a8d6267804fb76e38351fc363b5",
+                "amd64_sha256": "17de60de788e947c9200ae93d53628a10608f6dbda5ba86aac5096d50f96ae83"
             },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",
                 "tag": "latest",
-                "sha256": "0b2f7166795ef50e62bf2e8531f5dec4d1671777c586878c33cc4f65e961502c"
+                "arm64_sha256": "403d741b1b5bcf5df1e48eab0af8038355fae3e29419ad5980428f9aebd1576c",
+                "amd64_sha256": "ae6f8e8cc1303bc9c0b5fa1b1ef4176c25a2c082e29bf8b554ce1196731e7db2"
             }
         },
         "edge": {
@@ -44,33 +49,38 @@
                 "patch": 8,
                 "amd64_url": "https://bin.infra.native.computer/groundseg_amd64_edge",
                 "arm64_url": "https://bin.infra.native.computer/groundseg_arm64_edge",
-                "amd64_sha256": "24c09a8b94207c5530657960f67d151d311f00d934f21d4748bd3c6256699fb9",
-                "arm64_sha256": "2a2ee6a79b165d5266da711dda50cbda88ff0c9745917d48bb2ce0662ad2f43c"
+                "amd64_sha256": "c170b2b5111ea7b88db798b0740fa8d3e3eeaa02f6b42c4fdda73a52cae7b969",
+                "arm64_sha256": "769200017da12766728cab8f17bc11bbc4cd5a9540cc919b364649aa74cc2cdd"
             },
             "webui": {
                 "repo": "registry.hub.docker.com/nativeplanet/groundseg-webui",
                 "tag": "edge",
-                "sha256": "226335a6c3b41046cd4122a1c8cddd66b75ea76efca39de7b04be684ea2354ec"
+                "arm64_sha256": "fdf3592698b60956e8a78ca7f8c70346268be955a5522b39a4c36eb20aa37f91",
+                "amd64_sha256": "226335a6c3b41046cd4122a1c8cddd66b75ea76efca39de7b04be684ea2354ec"
             },
             "vere": {
                 "repo": "registry.hub.docker.com/nativeplanet/urbit",
                 "tag": "v1.20",
-                "sha256": "e3d1624382ebb35355c9560558cdfa170ff1950bb8651ab5536454b54050b451"
+                "arm64_sha256": "fb7dddb7fea249b4c46931f0709ad1a5b7225ee69feb9fb8fac17cc0b8eeddd5",
+                "amd64_sha256": "3192699f1a69468b121d006eadde61026f2a149a6a4223602fb25464ae000a26"
             },
             "minio": {
                 "repo": "registry.hub.docker.com/minio/minio",
                 "tag": "latest",
-                "sha256": "827e74d04dcdd6125c765f56dcf0bde7f057ecf693789d04e205bad7db630f8a"
+                "arm64_sha256": "3192699f1a69468b121d006eadde61026f2a149a6a4223602fb25464ae000a26",
+                "amd64_sha256": "fd5bf0c4c61a07e832f65dbf65a297e219791b75aba9abeb3a792c323db12941"
             },
             "miniomc": {
                 "repo": "registry.hub.docker.com/minio/mc",
                 "tag": "latest",
-                "sha256": "504b323b22a01d8ed14e32c0a2725893399d768550de1ec00dcdf6ddb8d6ff51"
+                "arm64_sha256": "408eb463b859e4c0c5814c8ccfc05580948ea836fb42c554b3785877eb71b93c",
+                "amd64_sha256": "17de60de788e947c9200ae93d53628a10608f6dbda5ba86aac5096d50f96ae83"
             },
             "wireguard": {
                 "repo": "registry.hub.docker.com/linuxserver/wireguard",
                 "tag": "latest",
-                "sha256": "0b2f7166795ef50e62bf2e8531f5dec4d1671777c586878c33cc4f65e961502c"
+                "arm64_sha256": "403d741b1b5bcf5df1e48eab0af8038355fae3e29419ad5980428f9aebd1576c",
+                "amd64_sha256": "ae6f8e8cc1303bc9c0b5fa1b1ef4176c25a2c082e29bf8b554ce1196731e7db2"
             }
         }
     }

@@ -16,20 +16,25 @@ for db in dbs:
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
                 PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS webui (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
-                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS vere (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
-                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS minio (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
-                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS miniomc (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
-                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
-    conn.execute('CREATE TABLE IF NOT EXISTS wireguard (uid INTEGER, \
-                repo TEXT NULL, tag TEXT NULL, sha256 TEXT NULL, \
-                last_mod TIMESTAMP NULL, PRIMARY KEY ("uid" AUTOINCREMENT) );')
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
+    conn.execute('CREATE TABLE IF NOT EXISTS wiregaurd (uid INTEGER, \
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.commit()
     conn.close()
 
@@ -100,27 +105,32 @@ def generate_content():
                 'webui': {
                     'repo': get_value('latest','webui','repo'),
                     'tag': get_value('latest','webui','tag'),
-                    'sha256': get_value('latest','webui','sha256')
+                    'amd64_sha256': get_value('latest','webui','sha256'),
+                    'arm64_sha256': get_value('latest','webui','sha256')
                 },
                 'vere': {
                     'repo': get_value('latest','vere','repo'),
                     'tag': get_value('latest','vere','tag'),
-                    'sha256': get_value('latest','vere','sha256')
+                    'amd64_sha256': get_value('latest','vere','sha256'),
+                    'arm64_sha256': get_value('latest','vere','sha256')
                 },
                 'minio': {
                     'repo': get_value('latest','minio','repo'),
                     'tag': get_value('latest','minio','tag'),
-                    'sha256': get_value('latest','minio','sha256')
+                    'amd64_sha256': get_value('latest','minio','sha256'),
+                    'arm64_sha256': get_value('latest','minio','sha256')
                 },
                 'miniomc': {
                     'repo': get_value('latest','miniomc','repo'),
                     'tag': get_value('latest','miniomc','tag'),
-                    'sha256': get_value('latest','miniomc','sha256')
+                    'amd64_sha256': get_value('latest','miniomc','sha256'),
+                    'arm64_sha256': get_value('latest','miniomc','sha256')
                 },
                 'wireguard': {
                     'repo': get_value('latest','wireguard','repo'),
                     'tag': get_value('latest','wireguard','tag'),
-                    'sha256': get_value('latest','wireguard','sha256')
+                    'amd64_sha256': get_value('latest','wireguard','sha256'),
+                    'arm64_sha256': get_value('latest','wireguard','sha256')
                 }
             },
             'edge': {
@@ -130,33 +140,38 @@ def generate_content():
                     'patch': int(get_value('edge','groundseg','patch')),
                     'amd64_url': get_value('edge','groundseg','amd64_url'),
                     'arm64_url': get_value('edge','groundseg','arm64_url'),
-                    'amd64_sha256': get_value('latest','groundseg','amd64_sha256'),
-                    'arm64_sha256': get_value('latest','groundseg','arm64_sha256')
+                    'amd64_sha256': get_value('edge','groundseg','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','groundseg','arm64_sha256')
                 },
                 'webui': {
-                    'repo': get_value('latest','webui','repo'),
-                    'tag': get_value('latest','webui','tag'),
-                    'sha256': get_value('latest','webui','sha256')
+                    'repo': get_value('edge','webui','repo'),
+                    'tag': get_value('edge','webui','tag'),
+                    'amd64_sha256': get_value('edge','webui','sha256'),
+                    'arm64_sha256': get_value('edge','webui','sha256')
                 },
                 'vere': {
                     'repo': get_value('edge','vere','repo'),
                     'tag': get_value('edge','vere','tag'),
-                    'sha256': get_value('edge','vere','sha256')
+                    'amd64_sha256': get_value('edge','vere','sha256'),
+                    'arm64_sha256': get_value('edge','vere','sha256')
                 },
                 'minio': {
                     'repo': get_value('edge','minio','repo'),
                     'tag': get_value('edge','minio','tag'),
-                    'sha256': get_value('edge','minio','sha256')
+                    'amd64_sha256': get_value('edge','minio','sha256'),
+                    'arm64_sha256': get_value('edge','minio','sha256')
                 },
                 'miniomc': {
-                    'repo': get_value('latest','miniomc','repo'),
-                    'tag': get_value('latest','miniomc','tag'),
-                    'sha256': get_value('latest','miniomc','sha256')
+                    'repo': get_value('edge','miniomc','repo'),
+                    'tag': get_value('edge','miniomc','tag'),
+                    'amd64_sha256': get_value('edge','miniomc','sha256'),
+                    'arm64_sha256': get_value('edge','miniomc','sha256')
                 },
                 'wireguard': {
                     'repo': get_value('edge','wireguard','repo'),
                     'tag': get_value('edge','wireguard','tag'),
-                    'sha256': get_value('edge','wireguard','sha256')
+                    'amd64_sha256': get_value('edge','wireguard','sha256'),
+                    'arm64_sha256': get_value('edge','wireguard','sha256')
                 }
             }
         }
