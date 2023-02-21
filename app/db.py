@@ -105,32 +105,32 @@ def generate_content():
                 'webui': {
                     'repo': get_value('latest','webui','repo'),
                     'tag': get_value('latest','webui','tag'),
-                    'amd64_sha256': get_value('latest','webui','sha256'),
-                    'arm64_sha256': get_value('latest','webui','sha256')
+                    'amd64_sha256': get_value('latest','webui','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','webui','arm64_sha256')
                 },
                 'vere': {
                     'repo': get_value('latest','vere','repo'),
                     'tag': get_value('latest','vere','tag'),
-                    'amd64_sha256': get_value('latest','vere','sha256'),
-                    'arm64_sha256': get_value('latest','vere','sha256')
+                    'amd64_sha256': get_value('latest','vere','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','vere','arm64_sha256')
                 },
                 'minio': {
                     'repo': get_value('latest','minio','repo'),
                     'tag': get_value('latest','minio','tag'),
-                    'amd64_sha256': get_value('latest','minio','sha256'),
-                    'arm64_sha256': get_value('latest','minio','sha256')
+                    'amd64_sha256': get_value('latest','minio','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','minio','arm64_sha256')
                 },
                 'miniomc': {
                     'repo': get_value('latest','miniomc','repo'),
                     'tag': get_value('latest','miniomc','tag'),
-                    'amd64_sha256': get_value('latest','miniomc','sha256'),
-                    'arm64_sha256': get_value('latest','miniomc','sha256')
+                    'amd64_sha256': get_value('latest','miniomc','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','miniomc','arm64_sha256')
                 },
                 'wireguard': {
                     'repo': get_value('latest','wireguard','repo'),
                     'tag': get_value('latest','wireguard','tag'),
-                    'amd64_sha256': get_value('latest','wireguard','sha256'),
-                    'arm64_sha256': get_value('latest','wireguard','sha256')
+                    'amd64_sha256': get_value('latest','wireguard','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','wireguard','arm64_sha256')
                 }
             },
             'edge': {
@@ -146,32 +146,32 @@ def generate_content():
                 'webui': {
                     'repo': get_value('edge','webui','repo'),
                     'tag': get_value('edge','webui','tag'),
-                    'amd64_sha256': get_value('edge','webui','sha256'),
-                    'arm64_sha256': get_value('edge','webui','sha256')
+                    'amd64_sha256': get_value('edge','webui','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','webui','arm64_sha256')
                 },
                 'vere': {
                     'repo': get_value('edge','vere','repo'),
                     'tag': get_value('edge','vere','tag'),
-                    'amd64_sha256': get_value('edge','vere','sha256'),
-                    'arm64_sha256': get_value('edge','vere','sha256')
+                    'amd64_sha256': get_value('edge','vere','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','vere','arm64_sha256')
                 },
                 'minio': {
                     'repo': get_value('edge','minio','repo'),
                     'tag': get_value('edge','minio','tag'),
-                    'amd64_sha256': get_value('edge','minio','sha256'),
-                    'arm64_sha256': get_value('edge','minio','sha256')
+                    'amd64_sha256': get_value('edge','minio','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','minio','arm64_sha256')
                 },
                 'miniomc': {
                     'repo': get_value('edge','miniomc','repo'),
                     'tag': get_value('edge','miniomc','tag'),
-                    'amd64_sha256': get_value('edge','miniomc','sha256'),
-                    'arm64_sha256': get_value('edge','miniomc','sha256')
+                    'amd64_sha256': get_value('edge','miniomc','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','miniomc','arm64_sha256')
                 },
                 'wireguard': {
                     'repo': get_value('edge','wireguard','repo'),
                     'tag': get_value('edge','wireguard','tag'),
-                    'amd64_sha256': get_value('edge','wireguard','sha256'),
-                    'arm64_sha256': get_value('edge','wireguard','sha256')
+                    'amd64_sha256': get_value('edge','wireguard','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','wireguard','arm64_sha256')
                 }
             }
         }
