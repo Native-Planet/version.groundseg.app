@@ -31,7 +31,7 @@ for db in dbs:
                 repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
                 PRIMARY KEY ("uid" AUTOINCREMENT) );')
-    conn.execute('CREATE TABLE IF NOT EXISTS wiregaurd (uid INTEGER, \
+    conn.execute('CREATE TABLE IF NOT EXISTS wireguard (uid INTEGER, \
                 repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
                 PRIMARY KEY ("uid" AUTOINCREMENT) );')
