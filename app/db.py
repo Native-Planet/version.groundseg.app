@@ -31,6 +31,10 @@ for db in dbs:
                 repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
                 PRIMARY KEY ("uid" AUTOINCREMENT) );')
+    conn.execute('CREATE TABLE IF NOT EXISTS netdata (uid INTEGER, \
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.execute('CREATE TABLE IF NOT EXISTS wireguard (uid INTEGER, \
                 repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
@@ -126,6 +130,12 @@ def generate_content():
                     'amd64_sha256': get_value('latest','miniomc','amd64_sha256'),
                     'arm64_sha256': get_value('latest','miniomc','arm64_sha256')
                 },
+                'netdata': {
+                    'repo': get_value('latest','netdata','repo'),
+                    'tag': get_value('latest','netdata','tag'),
+                    'amd_sha256': get_value('latest','netdata','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','netdata','arm64_sha256')
+                },
                 'wireguard': {
                     'repo': get_value('latest','wireguard','repo'),
                     'tag': get_value('latest','wireguard','tag'),
@@ -167,6 +177,12 @@ def generate_content():
                     'amd64_sha256': get_value('edge','miniomc','amd64_sha256'),
                     'arm64_sha256': get_value('edge','miniomc','arm64_sha256')
                 },
+                'netdata': {
+                    'repo': get_value('edge','netdata','repo'),
+                    'tag': get_value('edge','netdata','tag'),
+                    'amd_sha256': get_value('edge','netdata','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','netdata','arm64_sha256')
+                },
                 'wireguard': {
                     'repo': get_value('edge','wireguard','repo'),
                     'tag': get_value('edge','wireguard','tag'),
@@ -193,7 +209,8 @@ def default_vals():
     generate_content()
 
 # Create rows if empty db
-nullcheck = get_value('edge','miniomc','uid')
+# if extending schema, change to new table name
+nullcheck = get_value('edge','netdata','uid')
 if nullcheck == None:
     f = open('/app/default_vals.json')
     d = json.load(f)

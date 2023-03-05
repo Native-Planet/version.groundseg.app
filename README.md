@@ -11,10 +11,10 @@ Caches data in sqlite db.
   "groundseg": {
     "edge": {
       "groundseg": {
-        "amd64_sha256": "7b8419d0519157bffb4c926f28065b254e3301cc444473270407675595297692",
-        "amd64_url": "https://bin.infra.native.computer/groundseg_amd64_edge-v1.1.3_edge",
-        "arm64_sha256": "6480738919d01970ca650e4679da0766bffbed5ab11b4cd98b3537e1fc0f5426",
-        "arm64_url": "https://bin.infra.native.computer/groundseg_arm64_edge-v1.1.3_edge",
+        "amd64_sha256": "3472a6d15793f5b1a38cb303efa2e362f8610d27557504772a569ca4e2499414",
+        "amd64_url": "https://files.native.computer/bin/groundseg_amd64_edge-v1.1.3_edge",
+        "arm64_sha256": "e062f5604962dc0724893dd7510d59b4e8ed273bbf8a149126db2b5f7e830841",
+        "arm64_url": "https://files.native.computer/bin/groundseg_arm64_edge-v1.1.3_edge",
         "major": 1,
         "minor": 1,
         "patch": 3
@@ -29,6 +29,12 @@ Caches data in sqlite db.
         "amd64_sha256": "6ffd76764e8ca484de12c6ecaa352db3d8efd5c9d44f393718b29b6600e0a559",
         "arm64_sha256": "6825aecd2f123c9d4408e660aba8a72f9e547a3774350b8f4d2d9b674e99e424",
         "repo": "registry.hub.docker.com/minio/mc",
+        "tag": "latest"
+      },
+      "netdata": {
+        "amd_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
+        "arm64_sha256": "cd3dc9d182a4561b162f03c6986f4647bbb704f8e7e4872ee0611b1b9e86e1b0",
+        "repo": "registry.hub.docker.com/netdata/netdata",
         "tag": "latest"
       },
       "vere": {
@@ -70,6 +76,12 @@ Caches data in sqlite db.
         "amd64_sha256": "6ffd76764e8ca484de12c6ecaa352db3d8efd5c9d44f393718b29b6600e0a559",
         "arm64_sha256": "6825aecd2f123c9d4408e660aba8a72f9e547a3774350b8f4d2d9b674e99e424",
         "repo": "registry.hub.docker.com/minio/mc",
+        "tag": "latest"
+      },
+      "netdata": {
+        "amd_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
+        "arm64_sha256": "cd3dc9d182a4561b162f03c6986f4647bbb704f8e7e4872ee0611b1b9e86e1b0",
+        "repo": "registry.hub.docker.com/netdata/netdata",
         "tag": "latest"
       },
       "vere": {
