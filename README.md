@@ -32,7 +32,7 @@ Caches data in sqlite db.
         "tag": "latest"
       },
       "netdata": {
-        "amd_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
+        "amd64_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
         "arm64_sha256": "cd3dc9d182a4561b162f03c6986f4647bbb704f8e7e4872ee0611b1b9e86e1b0",
         "repo": "registry.hub.docker.com/netdata/netdata",
         "tag": "latest"
@@ -79,7 +79,7 @@ Caches data in sqlite db.
         "tag": "latest"
       },
       "netdata": {
-        "amd_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
+        "amd64_sha256": "95e74c36f15091bcd7983ee162248f1f91c21207c235fce6b0d6f8ed9a11732a",
         "arm64_sha256": "cd3dc9d182a4561b162f03c6986f4647bbb704f8e7e4872ee0611b1b9e86e1b0",
         "repo": "registry.hub.docker.com/netdata/netdata",
         "tag": "latest"

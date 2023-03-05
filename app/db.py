@@ -133,7 +133,7 @@ def generate_content():
                 'netdata': {
                     'repo': get_value('latest','netdata','repo'),
                     'tag': get_value('latest','netdata','tag'),
-                    'amd_sha256': get_value('latest','netdata','amd64_sha256'),
+                    'amd64_sha256': get_value('latest','netdata','amd64_sha256'),
                     'arm64_sha256': get_value('latest','netdata','arm64_sha256')
                 },
                 'wireguard': {
@@ -180,7 +180,7 @@ def generate_content():
                 'netdata': {
                     'repo': get_value('edge','netdata','repo'),
                     'tag': get_value('edge','netdata','tag'),
-                    'amd_sha256': get_value('edge','netdata','amd64_sha256'),
+                    'amd64_sha256': get_value('edge','netdata','amd64_sha256'),
                     'arm64_sha256': get_value('edge','netdata','arm64_sha256')
                 },
                 'wireguard': {
