@@ -29,10 +29,9 @@
         "tag": "latest"
       },
       "vere": {
-        "amd64_sha256": "e1fadc3da1a0bbaf7d938580f823db687c0dfff2e5ac6dad51b71c32ec3f988d",
-        "arm64_sha256": "51bfff713d3147951f6967effda047f5f2f4193701d37b65d075bd2363175282",
-        "repo": "registry.hub.docker.com/nativeplanet/urbit",
-        "tag": "v2.0"
+        "amd64_sha256": "754d112043e0d7d23ea49c82d8835563767900f077cf690beba93ccf06113827",
+        "repo": "registry.hub.docker.com/tloncorp/vere",
+        "tag": "edge"
       },
       "webui": {
         "amd64_sha256": "2128445f0684f6600b8f8fc3d5c9a1a785f7ad583b98243376c1b28949cbd96f",

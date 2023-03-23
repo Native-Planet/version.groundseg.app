@@ -209,8 +209,7 @@ def generate_content():
                 'vere': {
                     'repo': get_value('canary','vere','repo'),
                     'tag': get_value('canary','vere','tag'),
-                    'amd64_sha256': get_value('canary','vere','amd64_sha256'),
-                    'arm64_sha256': get_value('canary','vere','arm64_sha256')
+                    'amd64_sha256': get_value('canary','vere','amd64_sha256')
                 },
                 'minio': {
                     'repo': get_value('canary','minio','repo'),
