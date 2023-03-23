@@ -267,9 +267,7 @@ if nullcheck == None:
             logging.info(f'Creating {channel} {table} table')
             nullcheck = get_value(channel,table,'uid')
             if nullcheck == None:
-                insert_row('edge',table)
-                insert_row('latest',table)
-                insert_row('canary',table)
+                insert_row(channel,table)
     nullcheck = get_value('content','content','uid')
     if nullcheck == None:
         insert_row('content','content')
