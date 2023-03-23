@@ -5,7 +5,7 @@ from pathlib import Path
 logging.basicConfig(filename="/data/srv.log", level=os.environ.get("LOGLEVEL", "INFO"), format='%(asctime)s %(levelname)s:%(message)s')
 
 # create DB if it doesnt exist
-dbs = ['latest','edge']
+dbs = ['latest','edge','canary']
 for db in dbs:
     conn = sqlite3.connect(f'/data/{db}.sq3', isolation_level=None)
     conn.execute('pragma journal_mode=wal;')
@@ -189,6 +189,53 @@ def generate_content():
                     'amd64_sha256': get_value('edge','wireguard','amd64_sha256'),
                     'arm64_sha256': get_value('edge','wireguard','arm64_sha256')
                 }
+            },
+            'canary': {
+                'groundseg': {
+                    'major': int(get_value('canary','groundseg','major')),
+                    'minor': int(get_value('canary','groundseg','minor')),
+                    'patch': int(get_value('canary','groundseg','patch')),
+                    'amd64_url': get_value('canary','groundseg','amd64_url'),
+                    'arm64_url': get_value('canary','groundseg','arm64_url'),
+                    'amd64_sha256': get_value('canary','groundseg','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','groundseg','arm64_sha256')
+                },
+                'webui': {
+                    'repo': get_value('canary','webui','repo'),
+                    'tag': get_value('canary','webui','tag'),
+                    'amd64_sha256': get_value('canary','webui','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','webui','arm64_sha256')
+                },
+                'vere': {
+                    'repo': get_value('canary','vere','repo'),
+                    'tag': get_value('canary','vere','tag'),
+                    'amd64_sha256': get_value('canary','vere','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','vere','arm64_sha256')
+                },
+                'minio': {
+                    'repo': get_value('canary','minio','repo'),
+                    'tag': get_value('canary','minio','tag'),
+                    'amd64_sha256': get_value('canary','minio','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','minio','arm64_sha256')
+                },
+                'miniomc': {
+                    'repo': get_value('canary','miniomc','repo'),
+                    'tag': get_value('canary','miniomc','tag'),
+                    'amd64_sha256': get_value('canary','miniomc','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','miniomc','arm64_sha256')
+                },
+                'netdata': {
+                    'repo': get_value('canary','netdata','repo'),
+                    'tag': get_value('canary','netdata','tag'),
+                    'amd64_sha256': get_value('canary','netdata','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','netdata','arm64_sha256')
+                },
+                'wireguard': {
+                    'repo': get_value('canary','wireguard','repo'),
+                    'tag': get_value('canary','wireguard','tag'),
+                    'amd64_sha256': get_value('canary','wireguard','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','wireguard','arm64_sha256')
+                }
             }
         }
     }
@@ -210,11 +257,11 @@ def default_vals():
 
 # Create rows if empty db
 # if extending schema, change to new table name
-nullcheck = get_value('edge','netdata','uid')
+nullcheck = get_value('canary','netdata','uid')
 if nullcheck == None:
     f = open('/app/default_vals.json')
     d = json.load(f)
-    channels = ['latest', 'edge']
+    channels = ['latest', 'edge', 'canary']
     for channel in channels:
         for table in d['groundseg'][channel]:
             logging.info(f'Creating {channel} {table} table')
@@ -222,6 +269,7 @@ if nullcheck == None:
             if nullcheck == None:
                 insert_row('edge',table)
                 insert_row('latest',table)
+                insert_row('canary',table)
     nullcheck = get_value('content','content','uid')
     if nullcheck == None:
         insert_row('content','content')

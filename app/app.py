@@ -18,14 +18,14 @@ def get_conf():
     return content
 
 # route for modifying values in the version object
-@app.route("/modify/groundseg/<version>/<software>/<key>/<value>", methods=["PUT"])
-def upd_conf(version,software,key,value):
+@app.route("/modify/groundseg/<channel>/<software>/<key>/<value>", methods=["PUT"])
+def upd_conf(channel,software,key,value):
     if value == 'payload':
         # if we want to submit a string that wont work with url
         content = request.get_json()
         value = content.get('value')
-    logging.info(f'Updating {version} {software}: {key}={value}')
-    db.upd_value(version,software,key,value)
+    logging.info(f'Updating {channel} {software}: {key}={value}')
+    db.upd_value(channel,software,key,value)
     db.generate_content()
     return 'ok'
 
