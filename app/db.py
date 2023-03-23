@@ -247,7 +247,7 @@ def generate_content():
 def default_vals():
     f = open('/app/default_vals.json')
     d = json.load(f)['groundseg']
-    channels = ['latest', 'edge']
+    channels = ['latest', 'edge', 'canary']
     for channel in channels:
         for obj in d[channel]: # gs, vere, minio
             for item in d[channel][obj]: # repo, tag, sha256
