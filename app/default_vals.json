@@ -30,6 +30,7 @@
       },
       "vere": {
         "amd64_sha256": "754d112043e0d7d23ea49c82d8835563767900f077cf690beba93ccf06113827",
+        "arm64_sha256": null,
         "repo": "registry.hub.docker.com/tloncorp/vere",
         "tag": "edge"
       },
