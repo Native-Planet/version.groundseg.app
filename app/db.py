@@ -39,6 +39,10 @@ for db in dbs:
                 repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
                 arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
                 PRIMARY KEY ("uid" AUTOINCREMENT) );')
+    conn.execute('CREATE TABLE IF NOT EXISTS manual (uid INTEGER, \
+                repo TEXT NULL, tag TEXT NULL, amd64_sha256 TEXT NULL, \
+                arm64_sha256 TEXT NULL, last_mod TIMESTAMP NULL, \
+                PRIMARY KEY ("uid" AUTOINCREMENT) );')
     conn.commit()
     conn.close()
 
@@ -141,6 +145,12 @@ def generate_content():
                     'tag': get_value('latest','wireguard','tag'),
                     'amd64_sha256': get_value('latest','wireguard','amd64_sha256'),
                     'arm64_sha256': get_value('latest','wireguard','arm64_sha256')
+                },
+                'manual': {
+                    'repo': get_value('latest','manual','repo'),
+                    'tag': get_value('latest','manual','tag'),
+                    'amd64_sha256': get_value('latest','manual','amd64_sha256'),
+                    'arm64_sha256': get_value('latest','manual','arm64_sha256')
                 }
             },
             'edge': {
@@ -188,6 +198,12 @@ def generate_content():
                     'tag': get_value('edge','wireguard','tag'),
                     'amd64_sha256': get_value('edge','wireguard','amd64_sha256'),
                     'arm64_sha256': get_value('edge','wireguard','arm64_sha256')
+                },
+                'manual': {
+                    'repo': get_value('edge','manual','repo'),
+                    'tag': get_value('edge','manual','tag'),
+                    'amd64_sha256': get_value('edge','manual','amd64_sha256'),
+                    'arm64_sha256': get_value('edge','manual','arm64_sha256')
                 }
             },
             'canary': {
@@ -235,6 +251,12 @@ def generate_content():
                     'tag': get_value('canary','wireguard','tag'),
                     'amd64_sha256': get_value('canary','wireguard','amd64_sha256'),
                     'arm64_sha256': get_value('canary','wireguard','arm64_sha256')
+                },
+                'manual': {
+                    'repo': get_value('canary','manual','repo'),
+                    'tag': get_value('canary','manual','tag'),
+                    'amd64_sha256': get_value('canary','manual','amd64_sha256'),
+                    'arm64_sha256': get_value('canary','manual','arm64_sha256')
                 }
             }
         }
@@ -257,7 +279,7 @@ def default_vals():
 
 # Create rows if empty db
 # if extending schema, change to new table name
-nullcheck = get_value('canary','netdata','uid')
+nullcheck = get_value('canary','manual','uid')
 if nullcheck == None:
     f = open('/app/default_vals.json')
     d = json.load(f)
