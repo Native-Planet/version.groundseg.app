@@ -15,6 +15,7 @@ type Channel struct {
 	Vere      VersionDetails `json:"vere"`
 	Webui     VersionDetails `json:"webui"`
 	Wireguard VersionDetails `json:"wireguard"`
+	Rustfs    VersionDetails `json:"rustfs,omitempty"`
 }
 
 // version server payload substruct
